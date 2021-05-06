@@ -1,14 +1,16 @@
 import { IUserState, UserAction, UserActionTypes } from "../../types/user";
 
-
 const initialState: IUserState = {
   users: [],
   loading: false,
   error: null,
 };
 
-// sonda Iuserstate ona gore lazimdiki bu reducer sonda obyekt qaytaracaq 
-export const userReducer = (state = initialState, action: UserAction): IUserState => {
+// sonda Iuserstate ona gore lazimdiki bu reducer sonda obyekt qaytaracaq
+export const userReducer = (
+  state = initialState,
+  action: UserAction
+): IUserState => {
   switch (action.type) {
     case UserActionTypes.FETCH_USERS:
       return {
@@ -18,12 +20,14 @@ export const userReducer = (state = initialState, action: UserAction): IUserStat
     case UserActionTypes.FETCH_USERS_SUCCESS:
       return {
         ...state,
-        users: action.payload
+        loading: false,
+        users: action.payload,
       };
     case UserActionTypes.FETCH_USERS_ERROR:
       return {
         ...state,
-        error: action.payload
+        loading: false,
+        error: action.payload,
       };
     default:
       return state;
